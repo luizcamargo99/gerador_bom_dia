@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _formatadorData = FormatadorData();
 
   Color _corTexto = Colors.white;
-  Color pickerColor = const Color(0xff443a49);
+  Color _pickerColor = const Color(0xff443a49);
 
   ScreenshotController screenshotController = ScreenshotController();
 
@@ -177,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text('Escolha uma cor!'),
         content: SingleChildScrollView(
           child: ColorPicker(
-            pickerColor: pickerColor,
+            pickerColor: _pickerColor,
             onColorChanged: _changeColor,
           ),
         ),
@@ -190,7 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: ElevatedButton.styleFrom(
                 primary: const Color.fromRGBO(255, 222, 89, 1)),
             onPressed: () {
-              setState(() => _corTexto = pickerColor);
+              setState(() => _corTexto = _pickerColor);
               Navigator.of(context).pop();
             },
           ),
@@ -200,7 +200,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _changeColor(Color color) {
-    setState(() => pickerColor = color);
+    setState(() => _pickerColor = color);
   }
 
   Widget _botaoGerar() {
