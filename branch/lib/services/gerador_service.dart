@@ -42,6 +42,10 @@ class GeradorService {
     Translation fraseTraduzida =
         await _realizarTraducaoFrase(frases[random]['text']);
 
+    _validarCaracteresFrase(fraseTraduzida);
+  }
+
+  void _validarCaracteresFrase(Translation fraseTraduzida) {
     if (fraseTraduzida.text.length > limiteCaracteres) {
       _gerarFraseAleatoria();
     } else {
