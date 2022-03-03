@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await _geradorService.validarInternetParaGerarImagem();
 
     setState(() {
-      _geradorService.semInternet;
+      _geradorService.conexaoService.semInternet;
       _geradorService.imagemFundo;
       _corTexto = Colors.white;
       _geradorService.controllerFraseBomDia.text;
@@ -61,14 +61,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: _isLoading ? _loading() : _body(),
-      bottomNavigationBar: _isLoading || _geradorService.semInternet
-          ? const Text('')
-          : _rodapeFilter(),
+      bottomNavigationBar:
+          _isLoading || _geradorService.conexaoService.semInternet
+              ? const Text('')
+              : _rodapeFilter(),
     );
   }
 
   Widget _body() {
-    if (_geradorService.semInternet) {
+    if (_geradorService.conexaoService.semInternet) {
       return _semInternetWidget();
     }
     return _bodyImagem();

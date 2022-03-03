@@ -1,14 +1,17 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class ConexaoService {
+  bool semInternet = false;
+
   Future<ConnectivityResult> verificarConexaoAtual() async {
     return await (Connectivity().checkConnectivity());
   }
 
-  bool verificarSeEstaSemInternet(ConnectivityResult conexaoAtual) {
+  void verificarSeEstaSemInternet(ConnectivityResult conexaoAtual) {
     if (conexaoAtual == ConnectivityResult.none) {
-      return true;
+      semInternet = true;
+    } else {
+      semInternet = false;
     }
-    return false;
   }
 }

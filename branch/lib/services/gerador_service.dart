@@ -10,21 +10,19 @@ import 'package:http/http.dart' as http;
 
 class GeradorService {
   final _httpService = HttpService();
-  final _conexaoService = ConexaoService();
   final _translator = GoogleTranslator();
+  final conexaoService = ConexaoService();
 
   TextEditingController controllerFraseBomDia = TextEditingController();
   int limiteCaracteres = 140;
-  bool semInternet = false;
   File? imagemFundo;
   String src = '';
 
   Future<void> validarInternetParaGerarImagem() async {
-    final conexaoAtual = await _conexaoService.verificarConexaoAtual();
-    if (_conexaoService.verificarSeEstaSemInternet(conexaoAtual)) {
-      semInternet = true;
-    } else {
-      semInternet = false;
+    final conexaoAtual = await conexaoService.verificarConexaoAtual();
+    conexaoService.verificarSeEstaSemInternet(conexaoAtual);
+
+    if (!conexaoService.semInternet) {
       await _gerarImagemBomDia();
     }
   }
@@ -64,8 +62,8 @@ class GeradorService {
     await _salvarFundoPath(images['photos'][randomImage]['src']['original']);
   }
 
-  Future<void> _salvarFundoPath(src) async {
-    var response = await http.get(Uri.parse(src));
+  Future<void> _salvarFundoPath(String src) async {
+    final response = await http.get(Uri.parse(src));
     imagemFundo = await CompartilharService().criarDiretorioImagem(
         response.bodyBytes, DateTime.now().toString() + '.png');
   }
