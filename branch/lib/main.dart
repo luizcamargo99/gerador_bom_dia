@@ -1,4 +1,4 @@
-import 'package:branch/pages/splash.dart';
+import 'package:branch/pages/splash_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
