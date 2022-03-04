@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui';
 
+import 'package:branch/configuracoes/estilo_app.dart';
 import 'package:branch/services/compartilhar_service.dart';
 import 'package:branch/services/formatador_data.dart';
 import 'package:branch/services/gerador_service.dart';
@@ -42,10 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     await _geradorService.validarInternetParaGerarImagem();
 
     setState(() {
-      _geradorService.conexaoService.semInternet;
-      _geradorService.imagemFundo;
       _corTexto = Colors.white;
-      _geradorService.controllerFraseBomDia.text;
       _isLoading = false;
     });
   }
@@ -54,11 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(255, 222, 89, 1),
-        title: Text(
+        backgroundColor: EstiloApp.corPrincipal,
+        title: Center(
+            child: Text(
           'Gerador de Bom Dia'.toUpperCase(),
-          style: const TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
-        ),
+          style: const TextStyle(color: EstiloApp.corSecundaria),
+        )),
       ),
       body: _isLoading ? _loading() : _body(),
       bottomNavigationBar:
@@ -101,10 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ElevatedButton(
           child: Text(
             'Tentar novamente'.toUpperCase(),
-            style: const TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
+            style: const TextStyle(color: EstiloApp.corSecundaria),
           ),
-          style: ElevatedButton.styleFrom(
-              primary: const Color.fromRGBO(255, 222, 89, 1)),
+          style: ElevatedButton.styleFrom(primary: EstiloApp.corPrincipal),
           onPressed: () {
             _gerar();
           },
@@ -125,16 +123,17 @@ class _MyHomePageState extends State<MyHomePage> {
             maxLength: _geradorService.limiteCaracteres,
             controller: _geradorService.controllerFraseBomDia,
             onChanged: (String query) async {
-              setState(() {});
+              setState(() {
+                _geradorService.controllerFraseBomDia;
+              });
             },
             decoration: const InputDecoration(
                 focusColor: Colors.yellow,
                 hoverColor: Colors.yellow,
                 labelText: 'Editar Frase de Bom Dia',
                 focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromRGBO(54, 54, 51, 1))),
-                labelStyle: TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
+                    borderSide: BorderSide(color: EstiloApp.corSecundaria)),
+                labelStyle: TextStyle(color: EstiloApp.corSecundaria),
                 hintStyle: TextStyle(color: Colors.yellow)),
           ),
         ),
@@ -150,17 +149,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   onPressed: () async {
                     await _mudarCorTextoModal();
                   },
-                  style: ElevatedButton.styleFrom(
-                      primary: const Color.fromRGBO(255, 222, 89, 1)),
+                  style:
+                      ElevatedButton.styleFrom(primary: EstiloApp.corPrincipal),
                   icon: const Icon(
                     Icons.color_lens,
                     size: 18,
-                    color: Color.fromRGBO(54, 54, 51, 1),
+                    color: EstiloApp.corSecundaria,
                   ),
                   label: Text(
-                    'MUDAR A COR DO TEXTO'.toUpperCase(),
-                    style:
-                        const TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
+                    'MUDAR A COR DA FRASE'.toUpperCase(),
+                    style: const TextStyle(color: EstiloApp.corSecundaria),
                   ),
                 ),
               ),
@@ -179,19 +177,33 @@ class _MyHomePageState extends State<MyHomePage> {
         content: SingleChildScrollView(
           child: ColorPicker(
             pickerColor: _pickerColor,
-            onColorChanged: _changeColor,
+            onColorChanged: _mudarColor,
           ),
         ),
         actions: <Widget>[
           ElevatedButton(
             child: Text(
               'Mudar a cor da frase'.toUpperCase(),
-              style: const TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
+              style: const TextStyle(color: EstiloApp.corSecundaria),
             ),
-            style: ElevatedButton.styleFrom(
-                primary: const Color.fromRGBO(255, 222, 89, 1)),
+            style: ElevatedButton.styleFrom(primary: EstiloApp.corPrincipal),
             onPressed: () {
-              setState(() => _corTexto = _pickerColor);
+              setState(() {
+                _corTexto = _pickerColor;
+              });
+              Navigator.of(context).pop();
+            },
+          ),
+          ElevatedButton(
+            child: Text(
+              'Fechar'.toUpperCase(),
+              style: const TextStyle(color: Colors.white),
+            ),
+            style: ElevatedButton.styleFrom(primary: Colors.red),
+            onPressed: () {
+              setState(() {
+                _pickerColor = _corTexto;
+              });
               Navigator.of(context).pop();
             },
           ),
@@ -200,8 +212,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void _changeColor(Color color) {
-    setState(() => _pickerColor = color);
+  void _mudarColor(Color color) {
+    setState(() {
+      _pickerColor = color;
+    });
   }
 
   Widget _botaoGerar() {
@@ -212,16 +226,15 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: () async {
           await _gerar();
         },
-        style: ElevatedButton.styleFrom(
-            primary: const Color.fromRGBO(255, 222, 89, 1)),
+        style: ElevatedButton.styleFrom(primary: EstiloApp.corPrincipal),
         icon: const Icon(
           Icons.wb_sunny,
           size: 18,
-          color: Color.fromRGBO(54, 54, 51, 1),
+          color: EstiloApp.corSecundaria,
         ),
         label: Text(
           'Gerar Nova Imagem de Bom Dia!'.toUpperCase(),
-          style: const TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
+          style: const TextStyle(color: EstiloApp.corSecundaria),
         ),
       ),
     );
@@ -245,16 +258,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     bytes, 'bom_dia.png');
                 await _compartilharService.compartilharImagem(imagem);
               },
-              style: ElevatedButton.styleFrom(
-                  primary: const Color.fromRGBO(54, 54, 51, 1)),
+              style: ElevatedButton.styleFrom(primary: EstiloApp.corSecundaria),
               icon: const Icon(
                 Icons.share,
                 size: 18,
-                color: Color.fromRGBO(255, 222, 89, 1),
+                color: EstiloApp.corPrincipal,
               ),
               label: Text(
                 'compartilhar'.toUpperCase(),
-                style: const TextStyle(color: Color.fromRGBO(255, 222, 89, 1)),
+                style: const TextStyle(color: EstiloApp.corPrincipal),
               ),
             ),
           ),
@@ -276,7 +288,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
-        const CircularProgressIndicator(color: Color.fromRGBO(54, 54, 51, 1)),
+        const CircularProgressIndicator(color: EstiloApp.corSecundaria),
       ]),
     );
   }
@@ -312,7 +324,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Bom Dia!!!'.toUpperCase(),
                   style: const TextStyle(
                       backgroundColor: Colors.yellow,
-                      color: Color.fromRGBO(54, 54, 51, 1),
+                      color: EstiloApp.corSecundaria,
                       fontWeight: FontWeight.bold,
                       fontSize: 40.0),
                 )),
@@ -345,7 +357,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'Gerador de Bom Dia'.toUpperCase(),
                     style: const TextStyle(
                         backgroundColor: Colors.yellow,
-                        color: Color.fromRGBO(54, 54, 51, 1),
+                        color: EstiloApp.corSecundaria,
                         fontWeight: FontWeight.bold,
                         fontSize: 10.0),
                   ),
@@ -365,7 +377,7 @@ class _MyHomePageState extends State<MyHomePage> {
             'FELIZ ${_formatadorData.tratarDiaDaSemana(DateTime.now().weekday)}!'
                 .toUpperCase(),
             style: const TextStyle(
-                backgroundColor: Color.fromRGBO(54, 54, 51, 1),
+                backgroundColor: EstiloApp.corSecundaria,
                 color: Colors.yellow,
                 fontWeight: FontWeight.bold,
                 fontSize: 20.0),
