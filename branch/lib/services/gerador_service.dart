@@ -14,9 +14,8 @@ class GeradorService {
   final conexaoService = ConexaoService();
 
   TextEditingController controllerFraseBomDia = TextEditingController();
-  int limiteCaracteres = 140;
+  int limiteCaracteres = 120;
   File? imagemFundo;
-  String src = '';
 
   Future<void> validarInternetParaGerarImagem() async {
     final conexaoAtual = await conexaoService.verificarConexaoAtual();
@@ -52,13 +51,12 @@ class GeradorService {
   }
 
   Future<void> _gerarFundoAleatorio() async {
-    Uri url = Uri.parse(Configuracoes.apiImagensFundo);
+    Uri url = Uri.parse(Configuracoes.apiImagensFundo(Random().nextInt(100)));
 
     final images =
         await _httpService.httpGet(url, Configuracoes.tokenImagemApi);
 
     int randomImage = Random().nextInt(images['photos'].length);
-    src = images['photos'][randomImage]['src']['original'];
     await _salvarFundoPath(images['photos'][randomImage]['src']['original']);
   }
 

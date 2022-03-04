@@ -55,9 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromRGBO(255, 222, 89, 1),
-        title: const Text(
-          'Gerador de Bom Dia',
-          style: TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
+        title: Text(
+          'Gerador de Bom Dia'.toUpperCase(),
+          style: const TextStyle(color: Color.fromRGBO(54, 54, 51, 1)),
         ),
       ),
       body: _isLoading ? _loading() : _body(),
@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             cursorColor: Colors.yellow,
             autofocus: false,
             maxLines: 1,
-            maxLength: 140,
+            maxLength: _geradorService.limiteCaracteres,
             controller: _geradorService.controllerFraseBomDia,
             onChanged: (String query) async {
               setState(() {});
@@ -307,15 +307,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Container(
                 alignment: Alignment.topCenter,
-                padding: const EdgeInsets.only(bottom: 220),
+                padding: const EdgeInsets.only(bottom: 280),
                 child: Text(
                   'Bom Dia!!!'.toUpperCase(),
                   style: const TextStyle(
                       backgroundColor: Colors.yellow,
-                      color: Colors.black,
+                      color: Color.fromRGBO(54, 54, 51, 1),
                       fontWeight: FontWeight.bold,
                       fontSize: 40.0),
                 )),
+            _felizDia(),
             Center(
                 child: Text(
               '"' + _geradorService.controllerFraseBomDia.text + '"',
@@ -353,6 +354,23 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  Widget _felizDia() {
+    return Stack(alignment: Alignment.center, children: <Widget>[
+      Container(
+          alignment: Alignment.topCenter,
+          padding: const EdgeInsets.only(bottom: 180),
+          child: Text(
+            'FELIZ ${_formatadorData.tratarDiaDaSemana(DateTime.now().weekday)}!'
+                .toUpperCase(),
+            style: const TextStyle(
+                backgroundColor: Color.fromRGBO(54, 54, 51, 1),
+                color: Colors.yellow,
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0),
+          )),
+    ]);
   }
 
   Widget _rodapeFilter() {
