@@ -9,7 +9,7 @@ class Configuracoes {
   static String apiFrasesMotivacionais = 'https://type.fit/api/quotes';
 
   static String anuncioInterstitialIdAndroid =
-      'ca-app-pub-3940256099942544/1033173712';
+      'ca-app-pub-7488458364006976/8341614165';
   static String anuncioInterstitialIdIOS =
       'ca-app-pub-3940256099942544/1033173712';
 }
