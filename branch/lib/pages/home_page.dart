@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:branch/configuracoes/estilo_app.dart';
+import 'package:branch/pages/anuncio.dart';
 import 'package:branch/services/compartilhar_service.dart';
 import 'package:branch/services/formatador_data.dart';
 import 'package:branch/services/gerador_service.dart';
@@ -23,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final _geradorService = GeradorService();
   final _compartilharService = CompartilharService();
   final _formatadorData = FormatadorData();
+  final _anuncio = Anuncio();
 
   Color _corTexto = Colors.white;
   Color _pickerColor = const Color(0xff443a49);
@@ -33,6 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _gerar();
+    _anuncio.createInterstitialAd();
   }
 
   _gerar() async {
@@ -224,6 +227,7 @@ class _MyHomePageState extends State<MyHomePage> {
       width: 350,
       child: ElevatedButton.icon(
         onPressed: () async {
+          _anuncio.showInterstitialAd();
           await _gerar();
         },
         style: ElevatedButton.styleFrom(primary: EstiloApp.corPrincipal),
