@@ -19,7 +19,7 @@ class Anuncio {
         request: request,
         adLoadCallback: InterstitialAdLoadCallback(
           onAdLoaded: (InterstitialAd ad) {
-            print('$ad loaded');
+            // print('$ad loaded');
             interstitialAd = ad;
             interstitialAd!.setImmersiveMode(true);
           },
