@@ -1,16 +1,15 @@
-# branch
+# Good Morning Generator ☀️
 
-A new Flutter project.
+In Brazil, most older people have the habit of sending images with beautiful backgrounds and inspiring phrases in the morning to their friends and family.
+Thinking about this demand I created a super simple and intuitive application for all ages that automates this process and gives much more freedom to those who like these images to create a unique image.
 
-## Getting Started
+## Technologies 
 
-This project is a starting point for a Flutter application.
+I used Flutter to develop the application and consumed an API to generate the quotes and another to generate the background images.
+To download the application on Android device, click on the link below:
 
-A few resources to get you started if this is your first Flutter project:
+- [Good Morning Generator - Play Store](https://google.com)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+To download the application on Android device, click on the link below:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![alt text](https://i.ibb.co/Sv22Zdy/Whats-App-Image-2022-03-08-at-12-48-06-6.jpg)
