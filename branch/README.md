@@ -6,6 +6,9 @@ Thinking about this demand I created a super simple and intuitive application fo
 ## Technologies 
 
 I used Flutter to develop the application and consumed an API to generate the quotes and another to generate the background images.
+
+The user has the freedom to always generate new images with a new combination of text and background. And even edit the sentence, if you want to send something personalized. And so, share with your friends on social networks.
+
 To download the application on Android device, click on the link below:
 
 - [Good Morning Generator - Play Store](https://google.com)
