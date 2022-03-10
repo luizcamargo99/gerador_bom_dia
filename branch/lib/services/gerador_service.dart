@@ -18,9 +18,7 @@ class GeradorService {
   File? imagemFundo;
 
   Future<void> validarInternetParaGerarImagem() async {
-    final conexaoAtual = await conexaoService.verificarConexaoAtual();
-    conexaoService.verificarSeEstaSemInternet(conexaoAtual);
-
+    await conexaoService.verificarSeEstaSemInternet();
     if (!conexaoService.semInternet) {
       await _gerarImagemBomDia();
     }
