@@ -13,6 +13,4 @@ To download the application on Android device, click on the link below:
 
 - [Good Morning Generator - Play Store](https://google.com)
 
-To download the application on Android device, click on the link below:
-
 ![alt text](https://i.ibb.co/Sv22Zdy/Whats-App-Image-2022-03-08-at-12-48-06-6.jpg)
