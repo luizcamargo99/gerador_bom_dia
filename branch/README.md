@@ -11,6 +11,6 @@ The user has the freedom to always generate new images with a new combination of
 
 To download the application on Android device, click on the link below:
 
-- [Good Morning Generator - Play Store](https://google.com)
+- [Good Morning Generator - Play Store](https://play.google.com/store/apps/details?id=com.gerador.bom_dia)
 
 ![alt text](https://i.ibb.co/Sv22Zdy/Whats-App-Image-2022-03-08-at-12-48-06-6.jpg)
