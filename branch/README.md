@@ -29,6 +29,10 @@ The user has the freedom to always generate new images with a new combination of
 
 ![WhatsApp Image 2022-03-08 at 12 48 06 (2)](https://user-images.githubusercontent.com/59785233/158894699-594e946d-4dbc-4421-a063-aab5cab08c7a.jpeg)
 
+### 😮 Customize the phrase your way and share it with friends!
+![WhatsApp Image 2022-03-08 at 12 48 06 (3)](https://user-images.githubusercontent.com/59785233/158894921-f2b406cc-6155-43e7-af70-9d3d5a1931d7.jpeg)
+
+
 ## 🤔 How do I access the app?
 
 To download the application on Android device, click on the link below:
